@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { createContext, useState } from "react";
+
+import { LoginPage } from "./components2/LoginPage";
+import { Register } from "./components2/Register";
+import { Home } from "./components2/Home";
+
+export const AppContext = createContext(null);
 
 function App() {
+  const [name, setName] = useState([]);
+  const [password, setPassword] = useState([]);
+  const [store, setStore] = useState([]);
+  const [page, setPage] = useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <AppContext.Provider
+        value={{
+          name,
+          password,
+          store,
+          setName,
+          setPassword,
+          setStore,
+          page,
+          setPage,
+        }}
+      >
+        <LoginPage />
+        <Register />
+        <Home />
+      </AppContext.Provider>
     </div>
   );
 }
